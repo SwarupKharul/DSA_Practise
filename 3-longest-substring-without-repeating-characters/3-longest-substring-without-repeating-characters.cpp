@@ -9,7 +9,7 @@ public:
         
         int mx = 1;
         int j = 0, i=0;
-        for(i = 0; i<j+1; ++i){
+        for(i = 0; j<s.size(); ++i){
             while(j<s.size()){
                 cout<<j<<" ";
                 if(mp.count(s[j])){
