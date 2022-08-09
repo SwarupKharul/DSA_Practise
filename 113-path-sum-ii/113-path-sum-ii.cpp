@@ -13,19 +13,25 @@ class Solution {
 public:
     vector<vector<int>> res;
     vector<vector<int>> pathSum(TreeNode* root, int targetSum) {
-        helper(root, {}, targetSum);
+        vector<int> curr;
+        helper(root, curr, targetSum);
         return res;    
     }
     
-    void helper(TreeNode* root, vector<int> curr, int targetSum){
+    void helper(TreeNode* root, vector<int> &curr, int targetSum){
         if(!root) return;
         int newsum  = targetSum - root->val;
         curr.push_back(root->val);
         if(!root->right && !root->left && newsum==0){
             res.push_back(curr);
         }
-        
-        if(root->left) helper(root->left, curr, newsum);
-        if(root->right) helper(root->right, curr, newsum);
+        if(root->left){ 
+            helper(root->left, curr, newsum);
+            curr.pop_back();
+        }        
+        if(root->right) {
+            helper(root->right, curr, newsum);
+            curr.pop_back();
+        }
     }
 };
